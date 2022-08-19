@@ -6,10 +6,14 @@ import groundImg from '../assets/platform.png'
 import starImg from '../assets/star.png'
 import spriteImg from '../assets/dude.png'
 
-class GameScene extends Scene
-{
-   
+class GameScene extends Scene {
+    constructor () {
+        super()
 
+        this.score = 0;
+    }
+   
+    //PRELOAD
     preload ()
     {
        this.load.image('sky', skyImg)
@@ -20,16 +24,21 @@ class GameScene extends Scene
            { frameWidth: 32, frameHeight: 48 }
        );
     }
-      
+
+    //CREATE  
     create ()
     {
         const sky = this.add.image(0, 0, 'sky')
         sky.setOrigin(0, 0)
-
+    
         this.createPlatforms()
         this.createPlayer()
         this.createCursor()
         this.update
+        this.createStars()
+
+    //Creating score
+        this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
     }
 
     createPlatforms() {
@@ -66,26 +75,52 @@ class GameScene extends Scene
             repeat: -1
         });
             }
-            createCursor() {
-                this.cursors = this.input.keyboard.createCursorKeys();
-            }
+    createCursor() {
+        this.cursors = this.input.keyboard.createCursorKeys();
+        }
 
-            update() {
-            if (this.cursors.left.isDown) {
-                this.player.setVelocityX(-160);
-                this.player.anims.play('left', true);
-            }
-            else if (this.cursors.right.isDown) {
-                this.player.setVelocityX(160);
-                this.player.anims.play('right', true);
-            }
-            else {
-                this.player.setVelocityX(0);
-                this.player.anims.play('turn');
-            }
+    createStars() {
+        this.stars = this.physics.add.group({
+            key: 'star',
+            repeat: 11,
+            setXY: { x: 12, y: 0, stepX: 70 }
+        });
+        
+        this.stars.children.iterate((child) => {
+            child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+        });
+        this.physics.add.collider(this.stars, this.platforms);
+        //Overlap checks when items are overlaping. The below code checks for when player overlaps stars then stars disappear 
+        this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
+        }
+        //Player and Star are peremeters so "this" doesn't have to be added
+        //this code gives the appears that the star was collected 
+    collectStar (player, star) {
+        star.disableBody(true, true);
+        this.score += 10;
+        this.scoreText.setText('Score: ' + this.score);
+        }
 
-            if (this.cursors.up.isDown && this.player.body.touching.down){
-                this.player.setVelocityY(-330);
+
+
+
+    //UPDATE
+    update() {
+        if (this.cursors.left.isDown) {
+            this.player.setVelocityX(-160);
+            this.player.anims.play('left', true);
+        }
+        else if (this.cursors.right.isDown) {
+            this.player.setVelocityX(160);
+            this.player.anims.play('right', true);
+        }
+        else {
+            this.player.setVelocityX(0);
+            this.player.anims.play('turn');
+        }
+
+        if (this.cursors.up.isDown && this.player.body.touching.down){
+            this.player.setVelocityY(-330);
             }
     }
 }
