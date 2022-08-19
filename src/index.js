@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import GameScene from './Scenes/GameScene';
+import PreloadScene from './Scenes/PreloadScene';
 
 const config = {
     type: Phaser.AUTO,
@@ -16,7 +17,8 @@ const config = {
             debug: false
         }
     },
-    scene: GameScene
+    //for multiply scenes you can use an array. Phaser loads the first scene in the array.
+    scene: [PreloadScene, GameScene]
 };
 
 const game = new Phaser.Game(config);
