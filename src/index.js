@@ -6,7 +6,7 @@ const config = {
     type: Phaser.AUTO,
     parent: 'phaser-example',
     scale: {
-       // mode: Phaser.Scale.FIT,
+        mode: Phaser.Scale.FIT,
         width: 800,
         height: 600,
     },
@@ -18,7 +18,7 @@ const config = {
         }
     },
     //for multiply scenes you can use an array. Phaser loads the first scene in the array.
-    scene: [PreloadScene, GameScene]
+    scene: [ PreloadScene, GameScene ]
 };
 
 const game = new Phaser.Game(config);

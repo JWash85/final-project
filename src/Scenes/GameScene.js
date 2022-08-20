@@ -1,5 +1,4 @@
-import { Scene } from 'Phaser'
-import logoImg from '../assets/logo.png';
+import { Scene } from 'phaser'
 import skyImg  from '../assets/sky.png'
 import bombImg from '../assets/bomb.png'
 import groundImg from '../assets/platform.png'
@@ -8,7 +7,7 @@ import spriteImg from '../assets/dude.png'
 
 class GameScene extends Scene {
     constructor () {
-        super({ key:'game' })
+        super('game')
 
         this.score = 0;
         this.gameOver = false;
@@ -17,7 +16,7 @@ class GameScene extends Scene {
     //PRELOAD
     preload ()
     {
-       this.load.image('sky', skyImg)
+       this.load.image('sky', skyImg);
        this.load.image('ground', groundImg );
        this.load.image('star', starImg );
        this.load.image('bomb', bombImg);
