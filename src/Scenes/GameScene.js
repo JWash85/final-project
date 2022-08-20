@@ -128,6 +128,7 @@ class GameScene extends Scene {
         player.anims.play('turn');
         this.gameOver = true;
         this.gameOverText.visible = true;
+        this.input.on('pointerdown', () => this.scene.start('preload'))
     }
     
     //UPDATE
