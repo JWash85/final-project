@@ -2,6 +2,7 @@
 html,
 body {
   height: 100%;
+  background-color: #050505;
 }
 body {
   display: -ms-flexbox;
@@ -15,8 +16,9 @@ body {
   justify-content: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #f5f5f5;
+ 
 }
+
 .form-signin {
   width: 100%;
   max-width: 330px;
@@ -40,4 +42,14 @@ body {
   margin-bottom: 10px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
+}
+img {
+  width: 1000px;
+  max-width: none;
+  padding: 15px;
+  margin: 0 auto;
+  margin-bottom: -500px;
+  margin-left: -400px;
+  position: relative;
+  box-sizing: border-box;
 }

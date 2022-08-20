@@ -16,7 +16,8 @@
     <link href="assets/css/main.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
-  <body class="text-center">
+  <body>
+    <div class="text-center">
     <form class="form-signin">
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       <label for="email" class="sr-only">Email address</label>
@@ -39,6 +40,7 @@
       <a class="btn btn-lg btn-primary btn-block" onClick="signIn()">Sign in</a>
       <a href="/signup.html">Don't have an account? Sign up here.</a>
     </form>
+    </div>
     <script>
       function signIn() {
         var data = {
